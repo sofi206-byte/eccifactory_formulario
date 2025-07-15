@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inscripción - ECCI FACTORY</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #002244, #004488);
+      margin: 0;
+      padding: 2rem;
+      color: #fff;
+    }
+
+    .container {
+      background-color: #ffffff;
+      color: #333;
+      max-width: 600px;
+      margin: auto;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    h2 {
+      text-align: center;
+      color: #002244;
+      margin-bottom: 1rem;
+    }
+
+    .subtitulo {
+      text-align: center;
+      font-size: 1.2rem;
+      color: #004488;
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 0.6rem;
+      margin-top: 0.4rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+
+    button {
+      margin-top: 2rem;
+      width: 100%;
+      background-color: #004488;
+      color: white;
+      border: none;
+      padding: 1rem;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #003366;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+      color: #bbb;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .thank-you {
+      text-align: center;
+      color: #ffffff;
+      font-size: 1.3rem;
+      margin-top: 2rem;
+      background-color: rgba(0, 100, 200, 0.3);
+      padding: 1.5rem;
+      border-radius: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CONTENEDOR DEL FORMULARIO -->
+  <div class="container" id="formulario">
+    <!-- LOGO ECCI FACTORY -->
+    <img src="logo_eccifactory.png" alt="Logo ECCI FACTORY"
+         style="max-width: 180px; display: block; margin: 0 auto 1rem auto; border-radius: 12px; box-shadow: 0 0 20px #00ffff;">
+    
+    <h2>Inscripción al Semillero</h2>
+    <div class="subtitulo">ECCI FACTORY – Desarrollo de Software 💻🚀</div>
+
+    <!-- FORMULARIO -->
+    <form id="miFormulario"
+          action="https://formsubmit.co/wmendozar@ecci.edu.co"
+          method="POST"
+          target="invisible">
+
+      <label for="nombre">Nombres y apellidos:</label>
+      <input type="text" id="nombre" name="nombre" required>
+
+      <label for="documento">Número de documento:</label>
+      <input type="text" id="documento" name="documento" required>
+
+      <label for="codigo">Código estudiantil:</label>
+      <input type="text" id="codigo" name="codigo" required>
+
+      <label for="semestre">Semestre:</label>
+      <input type="number" id="semestre" name="semestre" required min="1" max="12">
+
+      <label for="telefono">Número de teléfono:</label>
+      <input type="tel" id="telefono" name="telefono" required>
+
+      <label for="correo">Correo institucional:</label>
+      <input type="email" id="correo" name="correo" required>
+
+      <label for="tema">Tema de interés:</label>
+      <textarea id="tema" name="tema" rows="3" required></textarea>
+
+      <label for="modalidad">Modalidad de trabajo:</label>
+      <select id="modalidad" name="modalidad" required onchange="mostrarCamposGrupo()">
+        <option value="">Seleccione</option>
+        <option value="Grupo">Grupo</option>
+        <option value="Individual">Individual</option>
+      </select>
+
+      <!-- CAMPOS QUE APARECEN SOLO SI ES GRUPO -->
+      <div id="compañeros" class="hidden">
+        <label for="comp1">Nombre del compañero 1:</label>
+        <input type="text" id="comp1" name="compañero_1">
+
+        <label for="comp2">Nombre del compañero 2:</label>
+        <input type="text" id="comp2" name="compañero_2">
+
+        <label for="comp3">Nombre del compañero 3 (opcional):</label>
+        <input type="text" id="comp3" name="compañero_3">
+      </div>
+
+      <!-- CAMPO OCULTO CON MENSAJE FORMATEADO -->
+      <textarea name="mensaje" class="hidden" id="mensaje"></textarea>
+
+      <!-- EVITAR CAPTCHA Y REDIRECCIÓN -->
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_subject" value="📥 Nueva inscripción al Semillero ECCI FACTORY">
+
+      <button type="submit">Enviar inscripción</button>
+    </form>
+
+    <div class="footer">
+      Formulario desarrollado con ❤️ por ECCI FACTORY – Semillero de Desarrollo de Software
+    </div>
+  </div>
+
+  <!-- MENSAJE DE GRACIAS -->
+  <div class="thank-you hidden" id="gracias">
+    <img src="logo_eccifactory.png" alt="Logo ECCI FACTORY"
+         style="max-width: 180px; display: block; margin: 0 auto 1rem auto; border-radius: 12px; box-shadow: 0 0 20px #00ffff;">
+    <div style="font-size: 1.4rem; font-weight: bold;">
+      ¡Gracias por inscribirte al semillero ECCI FACTORY!❤️😉
+    </div>
+    <p style="margin-top: 0.5rem;">
+      Nos pondremos en contacto contigo para iniciar tu nuevo proyecto 🚀
+    </p>
+  </div>
+
+  <!-- IFRAME INVISIBLE PARA NO REDIRIGIR -->
+  <iframe name="invisible" style="display:none;"></iframe>
+
+  <!-- SCRIPT PARA MOSTRAR OCULTAR CAMPOS Y FORMATEAR CORREO -->
+  <script>
+    const form = document.getElementById("miFormulario");
+    const gracias = document.getElementById("gracias");
+    const formularioDiv = document.getElementById("formulario");
+
+    form.addEventListener("submit", function () {
+      const mensaje = `
+📌 Nombre: ${form.nombre.value}
+🆔 Documento: ${form.documento.value}
+🎓 Código: ${form.codigo.value}
+📚 Semestre: ${form.semestre.value}
+📞 Teléfono: ${form.telefono.value}
+✉️ Correo: ${form.correo.value}
+💡 Tema: ${form.tema.value}
+👥 Modalidad: ${form.modalidad.value}
+${form.modalidad.value === "Grupo" ? `
+👨‍💻 Compañero 1: ${form.compañero1.value}
+👩‍💻 Compañero 2: ${form.compañero2.value}
+👨‍👧‍👦 Compañero 3: ${form.compañero3.value}` : ''}
+      `;
+      form.mensaje.value = mensaje;
+
+      setTimeout(() => {
+        formularioDiv.classList.add("hidden");
+        gracias.classList.remove("hidden");
+      }, 1000);
+    });
+
+    function mostrarCamposGrupo() {
+      const modalidad = document.getElementById("modalidad").value;
+      const seccionGrupo = document.getElementById("compañeros");
+      seccionGrupo.classList.toggle("hidden", modalidad !== "Grupo");
+    }
+  </script>
+</body>
+</html>
